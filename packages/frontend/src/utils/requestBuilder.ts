@@ -27,7 +27,8 @@ export const buildRawRequest = (spec: RequestSpec): string => {
     }
 
     if (body && typeof body === "string" && body.length > 0) {
-      request += `Content-Length: ${body.length}\r\n`;
+      const byteLength = new TextEncoder().encode(body).length;
+      request += `Content-Length: ${byteLength}\r\n`;
     }
 
     request += "\r\n";
